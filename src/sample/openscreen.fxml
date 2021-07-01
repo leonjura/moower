@@ -7,20 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/16"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.OpenscreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.OpenScreenController">
    <children>
       <ImageView fitHeight="454.0" fitWidth="463.0" layoutX="123.0" layoutY="23.0" opacity="0.16" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@baricon.png" />
          </image>
       </ImageView>
-      <Button layoutX="103.0" layoutY="238.0" mnemonicParsing="false" prefHeight="127.0" prefWidth="153.0" style="-fx-background-color: #ebe4e4;" text="LOG IN">
+      <Button fx:id="logInButton" layoutX="103.0" layoutY="238.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="127.0" prefWidth="153.0" style="-fx-background-color: #ebe4e4;" text="LOG IN">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="453.0" layoutY="238.0" mnemonicParsing="false" prefHeight="127.0" prefWidth="153.0" style="-fx-background-color: #ebe4e4;" text="SIGN UP">
+      <Button fx:id="signInButton" layoutX="453.0" layoutY="238.0" mnemonicParsing="false" onAction="#signInButtonOnAction" prefHeight="127.0" prefWidth="153.0" style="-fx-background-color: #ebe4e4;" text="SIGN UP">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
