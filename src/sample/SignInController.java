@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.EventListener;
 import java.util.ResourceBundle;
 
 public class SignInController implements Initializable {
@@ -45,6 +46,8 @@ public class SignInController implements Initializable {
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
 
+        passMatch();
+
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
@@ -57,14 +60,23 @@ public class SignInController implements Initializable {
         //if false then set passwordConfirmationFailMessageLabel message
     }
 
-    public void passwordValidation() {
+    public void passMatch() {
         if (!passwordField.getText().equals(confirmPasswordField.getText())) {
-            passwordConfirmationFailMessageLabel.setText("Password does not match!");
-        } else if (firstNameField.getText().isBlank() || lastNameField.getText().isBlank() || usernameField.getText().isBlank() || passwordField.getText().isBlank() || confirmPasswordField.getText().isBlank()) {
-            passwordConfirmationFailMessageLabel.setText("All fields are required!");
-        } else if (passwordField.getText().equals(confirmPasswordField.getText())){
+            passwordConfirmationFailMessageLabel.setText("Passwords do not match!");
+        } else if (passwordField.getText().equals(confirmPasswordField.getText()) && !passwordField.getText().isBlank()) {
             passwordConfirmationFailMessageLabel.setText("Matching");
+        } else {
+            passwordConfirmationFailMessageLabel.setText("");
         }
-    } // i mixed password and whole form validation, needs fixing!
+    }
+//    public void passwordValidation() {
+//        if (!passwordField.getText().equals(confirmPasswordField.getText())) {
+//            passwordConfirmationFailMessageLabel.setText("Password does not match!");
+//        } else if (firstNameField.getText().isBlank() || lastNameField.getText().isBlank() || usernameField.getText().isBlank() || passwordField.getText().isBlank() || confirmPasswordField.getText().isBlank()) {
+//            passwordConfirmationFailMessageLabel.setText("All fields are required!");
+//        } else if (passwordField.getText().equals(confirmPasswordField.getText())){
+//            passwordConfirmationFailMessageLabel.setText("Matching");
+//        }
+//    } // i mixed password and whole form validation, needs fixing!
 
 }
