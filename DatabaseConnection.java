@@ -8,8 +8,8 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection() {
-        String databaseName = "name
-        String databaseUser = "user
+        String databaseName = "name"
+        String databaseUser = "user"
         String databasePassword = "password";
         String url = "url" + databaseName;
 
