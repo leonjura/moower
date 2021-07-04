@@ -50,7 +50,7 @@
                </font>
             </Button>
             <Label fx:id="registrationMessageLabel" alignment="CENTER" layoutY="77.0" prefHeight="17.0" prefWidth="292.0" text="User registered succesfully" textAlignment="RIGHT" textFill="#18a40e" />
-            <Label fx:id="passwordConfirmationFailMessageLabel" alignment="CENTER" layoutY="293.0" prefHeight="17.0" prefWidth="292.0" text="Password does not match!" textAlignment="RIGHT" textFill="#ff0909" />
+            <Label fx:id="passwordConfirmationFailMessageLabel" alignment="CENTER" layoutY="293.0" prefHeight="17.0" prefWidth="292.0"  textAlignment="RIGHT" textFill="#ff0909" />
          </children>
       </AnchorPane>
    </right>

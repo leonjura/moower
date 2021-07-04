@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -46,7 +48,24 @@ public class SignInController implements Initializable {
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
 
-        passMatch();
+
+        //Handling the key typed event
+        EventHandler<KeyEvent> eventHandlerTextField = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+
+                if (!passwordField.getText().equals(confirmPasswordField.getText())) {
+                    passwordConfirmationFailMessageLabel.setText("Passwords do not match!");
+                } else if (passwordField.getText().equals(confirmPasswordField.getText()) && !passwordField.getText().isBlank()) {
+                    passwordConfirmationFailMessageLabel.setText("Matching");
+                } else {
+                    passwordConfirmationFailMessageLabel.setText("");
+                }
+
+            }
+        };
+
+        confirmPasswordField.addEventHandler(KeyEvent.KEY_TYPED, eventHandlerTextField);
 
     }
 
@@ -60,14 +79,22 @@ public class SignInController implements Initializable {
         //if false then set passwordConfirmationFailMessageLabel message
     }
 
-    public void passMatch() {
-        if (!passwordField.getText().equals(confirmPasswordField.getText())) {
-            passwordConfirmationFailMessageLabel.setText("Passwords do not match!");
-        } else if (passwordField.getText().equals(confirmPasswordField.getText()) && !passwordField.getText().isBlank()) {
-            passwordConfirmationFailMessageLabel.setText("Matching");
-        } else {
-            passwordConfirmationFailMessageLabel.setText("");
-        }
+//    public void testMatch() {
+//
+//        if (confirmPasswordField.getText().equals(passwordField.getText()) && !passwordField.getText().isBlank()) {
+//            passwordConfirmationFailMessageLabel.setText("Matched");
+//        }
+//
+//    }
+
+//    public void passMatch() {
+//        if (!passwordField.getText().equals(confirmPasswordField.getText())) {
+//            passwordConfirmationFailMessageLabel.setText("Passwords do not match!");
+//        } else if (passwordField.getText().equals(confirmPasswordField.getText()) && !passwordField.getText().isBlank()) {
+//            passwordConfirmationFailMessageLabel.setText("Matching");
+//        } else {
+//            passwordConfirmationFailMessageLabel.setText("");
+//        }
     }
 //    public void passwordValidation() {
 //        if (!passwordField.getText().equals(confirmPasswordField.getText())) {
@@ -79,4 +106,3 @@ public class SignInController implements Initializable {
 //        }
 //    } // i mixed password and whole form validation, needs fixing!
 
-}
