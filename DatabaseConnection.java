@@ -8,10 +8,10 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection() {
-        String databaseName = "moowerdb";
-        String databaseUser = "root";
-        String databasePassword = "4270";
-        String url = "jdbc:mysql://127.0.0.1:3306/moowerdb?user=root&password=4270" + databaseName;
+        String databaseName = "name
+        String databaseUser = "user
+        String databasePassword = "password";
+        String url = "url" + databaseName;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
