@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
 
     public void closeWindow() {
 
-        Main.getPrimaryStage().close();
+
 
     }
 

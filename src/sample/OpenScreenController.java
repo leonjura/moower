@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,36 +30,37 @@ public class OpenScreenController implements Initializable {
 
     @FXML
     public void logInButtonOnAction(ActionEvent event) throws IOException {
+
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
-                Stage loginStage = new Stage();
-                loginStage.setTitle("MOOWER");
-                loginStage.setScene(new Scene(root, 520, 400));
-                loginStage.show();
-                // Hide current window
-                // ((Node)(event.getSource())).getScene().getWindow().hide();
+                Parent loginParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
+                Scene loginScene = new Scene(loginParent);
+
+                Stage window = (Stage) ((Node)(event.getSource())).getScene().getWindow();
+                window.setScene(loginScene);
+                window.setTitle("MOOWER");
+                window.show();
+
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
             }
     }
 
+    @FXML
     public void signInButtonOnAction(ActionEvent event) {
 
         try {
+            Parent signinParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("signin.fxml")));
+            Scene signinScene = new Scene(signinParent);
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("signin.fxml")));
-            Stage signInStage = new Stage();
-            signInStage.setTitle("MOOWER");
-            signInStage.setScene(new Scene(root, 520, 400));
-            signInStage.show();
-            // Hide current window
-            // ((Node)(event.getSource())).getScene().getWindow().hide();
+            Stage window = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+            window.setScene(signinScene);
+            window.setTitle("MOOWER");
+            window.show();
 
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
-
     }
 }
