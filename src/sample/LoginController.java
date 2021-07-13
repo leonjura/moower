@@ -1,7 +1,10 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +16,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -32,9 +36,9 @@ public class LoginController implements Initializable {
     @FXML
     private CheckBox passwordToggle;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         File brandingFile = new File("img/moowericon.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
@@ -47,13 +51,31 @@ public class LoginController implements Initializable {
     public void logInButtonOnAction(ActionEvent event) {
         if (!usernameTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
             validateLogin();
-            //goToMenu();
         } else {
             loginFailMessageField.setText("Please enter valid username and password!");
         }
     }
 
     public void goToMenu() {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menu.fxml")));
+            Stage menuStage = new Stage();
+            menuStage.setTitle("MOOWER");
+            menuStage.setScene(new Scene(root, 1042, 700));
+            menuStage.show();
+            // Hide current window
+//            Stage stage = (Stage) root.getScene().getWindow();
+//            stage.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void closeWindow() {
+
+        Main.getPrimaryStage().close();
 
     }
 
@@ -81,6 +103,7 @@ public class LoginController implements Initializable {
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
                     loginFailMessageField.setText("Log in successful!");
+                    goToMenu();
                 } else {
                     loginFailMessageField.setText("Invalid login. Please try again!");
                 }
