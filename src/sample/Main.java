@@ -12,26 +12,22 @@ import java.util.Objects;
 
 public class Main extends Application {
 
-    private static Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("openscreen.fxml")));
+
+        Scene scene = new Scene(root);
 
         //set bar icon
         Image barIcon = new Image(Objects.requireNonNull(LoginController.class.getResource("baricon.png")).toExternalForm(), false);
         primaryStage.getIcons().add(barIcon);
 
         primaryStage.setTitle("MOOWER");
-        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
         primaryStage.show();
 
-    }
-
-    public void changeScene(String fxml) throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
-
-        primaryStage.getScene().setRoot(pane);
     }
 
     public static void main(String[] args) {

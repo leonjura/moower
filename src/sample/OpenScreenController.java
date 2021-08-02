@@ -38,6 +38,7 @@ public class OpenScreenController implements Initializable {
                 Stage window = (Stage) ((Node)(event.getSource())).getScene().getWindow();
                 window.setScene(loginScene);
                 window.setTitle("MOOWER");
+                window.centerOnScreen();
                 window.show();
 
             } catch (Exception e) {
@@ -56,6 +57,7 @@ public class OpenScreenController implements Initializable {
             Stage window = (Stage) ((Node) (event.getSource())).getScene().getWindow();
             window.setScene(signinScene);
             window.setTitle("MOOWER");
+            window.centerOnScreen();
             window.show();
 
         } catch (Exception e) {

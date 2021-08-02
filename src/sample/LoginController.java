@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,8 +22,6 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    @FXML
-    private Button cancelButton;
     @FXML
     private Label loginFailMessageField;
     @FXML
@@ -50,22 +49,22 @@ public class LoginController implements Initializable {
 
     public void logInButtonOnAction(ActionEvent event) {
         if (!usernameTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
-            validateLogin();
+            validateLogin(event);
         } else {
             loginFailMessageField.setText("Please enter valid username and password!");
         }
     }
 
-    public void goToMenu() {
+    public void goToMenu(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menu.fxml")));
-            Stage menuStage = new Stage();
-            menuStage.setTitle("MOOWER");
-            menuStage.setScene(new Scene(root, 1042, 700));
-            menuStage.show();
-            // Hide current window
-//            Stage stage = (Stage) root.getScene().getWindow();
-//            stage.close();
+            Parent signinParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menu.fxml")));
+            Scene signinScene = new Scene(signinParent);
+
+            Stage window = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+            window.setScene(signinScene);
+            window.setTitle("MOOWER");
+            window.centerOnScreen();
+            window.show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,15 +72,24 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void closeWindow() {
 
+    public void backButtonOnAction(ActionEvent event) {
 
+        try {
+            Parent signinParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("openscreen.fxml")));
+            Scene signinScene = new Scene(signinParent);
 
-    }
+            Stage window = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+            window.setScene(signinScene);
+            window.setTitle("MOOWER");
+            window.centerOnScreen();
+            window.show();
 
-    public void cancelButtonOnAction(ActionEvent event) {
-        Stage loginStage = (Stage) cancelButton.getScene().getWindow();
-        loginStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
     }
 
     public void showPassword(ActionEvent event) {
@@ -89,7 +97,7 @@ public class LoginController implements Initializable {
         
     }
 
-    public void validateLogin() {
+    public void validateLogin(ActionEvent event) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -103,7 +111,7 @@ public class LoginController implements Initializable {
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
                     loginFailMessageField.setText("Log in successful!");
-                    goToMenu();
+                    goToMenu(event);
                 } else {
                     loginFailMessageField.setText("Invalid login. Please try again!");
                 }

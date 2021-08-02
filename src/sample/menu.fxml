@@ -9,20 +9,20 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1042.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1042.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
    <children>
       <ImageView fitHeight="453.0" fitWidth="467.0" layoutX="295.0" layoutY="124.0" opacity="0.16" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@baricon.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" layoutX="84.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" textAlignment="CENTER" />
-      <Button layoutX="320.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" />
-      <Button layoutX="556.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" />
-      <Button layoutX="788.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" />
+      <Button onAction="#casesButtonOnAction" alignment="CENTER" layoutX="84.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" textAlignment="CENTER" />
+      <Button onAction="#toolsButtonOnAction" layoutX="320.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" />
+      <Button onAction="#customersButtonOnAction" layoutX="556.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" />
+      <Button onAction="#servicesButtonOnAction" layoutX="788.0" layoutY="91.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="170.0" />
       <Button layoutX="84.0" layoutY="322.0" mnemonicParsing="false" prefHeight="286.0" prefWidth="465.0" />
-      <Button layoutX="719.0" layoutY="367.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" />
-      <ImageView fitHeight="74.0" fitWidth="81.0" layoutX="132.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+      <Button onAction="#logOutButtonOnAction" layoutX="719.0" layoutY="367.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" />
+      <ImageView fx:id="casesImageView" fitHeight="74.0" fitWidth="81.0" layoutX="132.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/google-forms.png" />
          </image>
@@ -57,22 +57,22 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="86.0" fitWidth="81.0" layoutX="365.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="toolsImageView" fitHeight="86.0" fitWidth="81.0" layoutX="365.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/lawn-mower.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="89.0" fitWidth="81.0" layoutX="601.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="customersImageView" fitHeight="89.0" fitWidth="81.0" layoutX="601.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/customer.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="103.0" fitWidth="81.0" layoutX="832.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="servicesImageView" fitHeight="103.0" fitWidth="81.0" layoutX="832.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../img/repair-tool.png" />
+            <Image url="@../../img/services.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="81.0" fitWidth="90.0" layoutX="779.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="logoutImageView" fitHeight="81.0" fitWidth="90.0" layoutX="779.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/logout.png" />
          </image>

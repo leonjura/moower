@@ -1,13 +1,12 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,16 +15,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.EventListener;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -42,7 +38,7 @@ public class SignInController implements Initializable {
     @FXML
     private PasswordField confirmPasswordField;
     @FXML
-    private Button cancelButton;
+    private Button backButton;
     @FXML
     private ImageView brandingImageView;
     @FXML
@@ -69,14 +65,28 @@ public class SignInController implements Initializable {
 
     }
 
-    public void cancelButtonOnAction(ActionEvent event) {
-        Stage signinStage = (Stage) cancelButton.getScene().getWindow();
-        signinStage.close();
+    public void backButtonOnAction(ActionEvent event) {
+
+        try {
+            Parent signinParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("openscreen.fxml")));
+            Scene signinScene = new Scene(signinParent);
+
+            Stage window = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+            window.setScene(signinScene);
+            window.setTitle("MOOWER");
+            window.centerOnScreen();
+            window.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
     }
 
     public void registerButtonOnAction(ActionEvent event) {
 
-        registerNewUser();
+        registerNewUser(event);
 
     }
 
@@ -105,7 +115,7 @@ public class SignInController implements Initializable {
 
     }
 
-    public void registerNewUser() {
+    public void registerNewUser(ActionEvent event) {
         DatabaseConnection connecting = new DatabaseConnection();
         Connection connectBD = connecting.getConnection();
 
@@ -127,7 +137,7 @@ public class SignInController implements Initializable {
 
                 registrationMessageLabel.setText("Registered successfully!");
 
-                openLogIn();
+                openLogIn(event);
 
             } catch (Exception exception){
 
@@ -146,16 +156,18 @@ public class SignInController implements Initializable {
         return !firstNameField.getText().isBlank() && !lastNameField.getText().isBlank() && !usernameField.getText().isBlank() && !passwordField.getText().isBlank() && !confirmPasswordField.getText().isBlank();
     }
 
-    public void openLogIn() {
+    public void openLogIn(ActionEvent event) {
 
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
-            Stage loginStage = new Stage();
-            loginStage.setTitle("MOOWER");
-            loginStage.setScene(new Scene(root, 520, 400));
-            loginStage.show();
-            // Hide current window
-            // ((Node)(event.getSource())).getScene().getWindow().hide();
+            Parent signinParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
+            Scene signinScene = new Scene(signinParent);
+
+            Stage window = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+            window.setScene(signinScene);
+            window.setTitle("MOOWER");
+            window.centerOnScreen();
+            window.show();
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
